@@ -70,3 +70,23 @@ on p.category_id = c.category_id
 join order_items oi
 on oi.product_id = p.product_id
 group by c.category_name;
+
+-- Customer Segmentation --
+
+select
+c.customer_name,
+c.city,
+sum(oi.quantity * p.price) as total_spending,
+case
+when sum(oi.quantity * p.price) >= 10000 then 'High Value'
+when sum(oi.quantity * p.price) >= 5000 then 'Medium Value'
+else 'Low Value'
+end as customer_segment
+from customers c
+join orders o
+on c.customer_id = o.customer_id
+join order_items oi
+on o.order_id = oi.order_id
+join products p
+on oi.product_id = p.product_id
+group by c.customer_name, c.city;
