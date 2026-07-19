@@ -57,3 +57,16 @@ revenue,
 lag(revenue) over(order by order_date) as previous_revenue,
 revenue - lag(revenue) over(order by order_date) as difference
 from order_revenue;
+
+-- Category Revenue Analysis --
+
+select
+c.category_name,
+sum(oi.quantity * p.price) as total_revenue,
+rank() over(order by sum(oi.quantity * p.price) desc) as revenue_rank
+from categories c
+join products p
+on p.category_id = c.category_id
+join order_items oi
+on oi.product_id = p.product_id
+group by c.category_name;
