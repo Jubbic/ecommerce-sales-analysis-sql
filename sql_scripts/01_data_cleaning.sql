@@ -90,3 +90,34 @@ SELECT
 FROM orders
 GROUP BY order_id
 HAVING COUNT(*) > 1;
+
+/*
+=========================================
+4. DATA QUALITY CHECKS
+=========================================
+*/
+
+-- Check for invalid product prices
+SELECT *
+FROM products
+WHERE price <= 0;
+
+
+-- Check for invalid quantities
+SELECT *
+FROM order_items
+WHERE quantity <= 0;
+
+
+-- Check for missing order dates
+SELECT *
+FROM orders
+WHERE order_date IS NULL;
+
+
+-- Check orders with invalid customer references
+SELECT *
+FROM orders o
+LEFT JOIN customers c
+ON o.customer_id = c.customer_id
+WHERE c.customer_id IS NULL;
