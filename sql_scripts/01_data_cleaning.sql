@@ -121,3 +121,54 @@ FROM orders o
 LEFT JOIN customers c
 ON o.customer_id = c.customer_id
 WHERE c.customer_id IS NULL;
+
+/*
+=========================================
+5. STANDARDIZING DATA
+=========================================
+*/
+
+-- Check unique city values
+
+SELECT DISTINCT city
+FROM customers;
+
+-- Check unique city values
+
+SELECT DISTINCT city
+FROM customers;
+
+
+-- Check cities after removing extra spaces
+
+SELECT DISTINCT TRIM(city)
+FROM customers;
+
+/*
+=========================================
+6. TEXT CLEANING
+=========================================
+*/
+
+-- Remove extra spaces from customer names
+
+SELECT 
+customer_name,
+TRIM(customer_name) AS cleaned_name
+FROM customers;
+
+/*
+=========================================
+7. CREATING CLEAN TABLES
+=========================================
+*/
+
+-- Create cleaned customers table
+
+CREATE TABLE clean_customers AS
+SELECT
+    customer_id,
+    TRIM(customer_name) AS customer_name,
+    TRIM(city) AS city,
+    email
+FROM customers;
