@@ -1,5 +1,15 @@
-/* 
-   FINAL CAPSTONE PROJECT
-   E-Commerce Sales Analysis
-   By: Adeleke Jubril
-    */
+/*
+=========================================
+FINAL CAPSTONE PROJECT
+E-COMMERCE SALES ANALYSIS
+Author: Adeleke Jubril
+
+Skills Demonstrated:
+- Joins
+- Aggregate Functions
+- CASE WHEN
+- Window Functions
+- CTEs
+- Business Reporting
+=========================================
+*/
